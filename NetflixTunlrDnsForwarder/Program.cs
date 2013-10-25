@@ -31,13 +31,14 @@ namespace NetflixTunlrDnsForwarder {
                         Console.Write("Starting DNS server...");
                         dnsServer.Start();
                         Console.WriteLine("done");
-                        for (; ; )
-                            Thread.Sleep(60000);
+                        Console.WriteLine("Press any key to stop...");
+                        Console.ReadKey();
+                        return;
                     }
                 }
                 catch (Exception exception) {
                     Console.WriteLine(exception);
-                    Console.Write("Attempting restart {0} of {1}", restartCount, maximumRestarts);
+                    Console.WriteLine("Attempting restart {0} of {1}...", restartCount, maximumRestarts);
                 }
         }
         static DnsMessageBase ProcessQuery(DnsMessageBase dnsMessage, IPAddress clientAddress, ProtocolType protocolType) {
